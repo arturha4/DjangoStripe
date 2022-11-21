@@ -1,10 +1,9 @@
 import json
-
 import stripe
 from django.shortcuts import render
 from django.http import HttpResponse
 from .services import get_item
-from .keys import STRIPE_SECRET_KEY, STRIPE_PUBLIC_KEY
+from .keys import *
 
 stripe.api_key = STRIPE_SECRET_KEY
 
