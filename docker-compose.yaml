@@ -1,12 +1,21 @@
 version: "3"
 services:
-  database:
-    container_name: db
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - 8000:8000
+    env_file:
+      - services.env
+    depends_on:
+      - db
+  db:
+    container_name: stripe_database
     image: postgres:14.3-alpine
     ports:
       - "5432:5432"
     restart: always
     environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_DB: djangostripe
+      POSTGRES_PASSWORD: ${db_password}
+      POSTGRES_USER: ${db_user}
+      POSTGRES_DB: ${db_name}
