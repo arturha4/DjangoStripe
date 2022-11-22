@@ -17,4 +17,6 @@ done
 
 echo "Django docker is fully configured successfully."
 
+python manage.py createsuperuser --noinput;
+
 exec "$@"
